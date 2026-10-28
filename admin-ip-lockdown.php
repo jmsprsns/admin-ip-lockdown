@@ -3,7 +3,7 @@
  * Plugin Name:       Admin IP Lockdown
  * Plugin URI:        https://www.contentpowered.com
  * Description:       Restricts wp-admin and wp-login.php to allowed IP addresses, with Cloudflare support, dynamic DNS hostnames for home IPs that change, and an emergency email unlock link so you can't lock yourself out.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 5.8
  * Requires PHP:      7.2
  * Author:            Content Powered

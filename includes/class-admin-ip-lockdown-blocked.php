@@ -89,7 +89,7 @@ final class Admin_IP_Lockdown_Blocked {
 
 		if ( 'confirm' === $state ) :
 			?>
-			<div class="icon"><?php echo self::icon( 'lock-open' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed SVG. ?></div>
+			<div class="icon is-blue"><?php echo self::icon( 'lock-open' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed SVG. ?></div>
 			<h1><?php esc_html_e( 'Unlock the admin area', 'admin-ip-lockdown' ); ?></h1>
 			<p>
 				<?php
@@ -108,7 +108,7 @@ final class Admin_IP_Lockdown_Blocked {
 			<?php
 		elseif ( 'already' === $state ) :
 			?>
-			<div class="icon"><?php echo self::icon( 'circle-check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed SVG. ?></div>
+			<div class="icon is-ok"><?php echo self::icon( 'circle-check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed SVG. ?></div>
 			<h1><?php esc_html_e( 'You already have access', 'admin-ip-lockdown' ); ?></h1>
 			<p><?php esc_html_e( 'Your network can already reach the admin area, so this link wasn\'t needed. It has been left unused.', 'admin-ip-lockdown' ); ?></p>
 			<p><a class="button" href="<?php echo esc_url( admin_url() ); ?>"><?php esc_html_e( 'Go to the dashboard', 'admin-ip-lockdown' ); ?></a></p>
@@ -172,6 +172,8 @@ html{background:#f0f0f1}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;color:#1d2327;font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif}
 .card{width:100%;max-width:440px;padding:36px 32px 30px;background:#fff;border:1px solid #dcdcde;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);text-align:center}
 .icon{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;margin-bottom:14px;border-radius:50%;background:#fcf0f1;color:#b32d2e}
+.icon.is-blue{background:#f0f6fc;color:#2271b1}
+.icon.is-ok{background:#edfaef;color:#008a20}
 .icon svg{display:block}
 h1{margin:0 0 10px;font-size:22px;line-height:1.3;font-weight:600}
 p{margin:0 0 14px;color:#50575e}
