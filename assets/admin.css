@@ -1,0 +1,776 @@
+/**
+ * Content Powered > Admin IP Lockdown page styles. Only loaded on that page.
+ *
+ * Built on WordPress's own admin pieces: a Site Health style header with
+ * tabs, the post editor's two-column box layout (#poststuff, .postbox) and
+ * the admin accent colour.
+ */
+
+.ailock-settings-page {
+	--ailock-accent: var(--wp-admin-theme-color, #3858e9);
+	--ailock-ok: #00a32a;
+	--ailock-ok-bg: #edfaef;
+	--ailock-ok-text: #00701a;
+	--ailock-warn: #dba617;
+	--ailock-warn-bg: #fcf9e8;
+	--ailock-bad: #d63638;
+	--ailock-bad-bg: #fcf0f1;
+	--ailock-tint: #f0f6fc;
+	--ailock-line: #f0f0f1;
+	--ailock-border: #dcdcde;
+	--ailock-muted: #646970;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+body.ailock-settings-page #wpcontent { padding-left: 0; }
+
+.ailock-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 0 24px;
+	padding: 16px 20px 0;
+	background: #fff;
+	border-bottom: 1px solid var(--ailock-border);
+}
+
+.ailock-header-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 12px;
+	padding-bottom: 16px;
+}
+
+.ailock-header-title h1 {
+	margin: 0;
+	padding: 0;
+	color: #1d2327;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.ailock-header-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	background: var(--ailock-accent);
+	color: #fff;
+}
+
+.ailock-version {
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.ailock-state {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 3px 10px 3px 8px;
+	border-radius: 999px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.ailock-state.is-on { background: var(--ailock-ok-bg); color: var(--ailock-ok-text); }
+.ailock-state.is-warn { background: var(--ailock-warn-bg); color: #8a6d00; }
+
+.ailock-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-bottom: -1px;
+}
+
+.ailock-tab {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 12px 12px 13px;
+	border-bottom: 3px solid transparent;
+	color: #50575e;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: color .15s, border-color .15s;
+}
+
+.ailock-tab:hover { color: var(--ailock-accent); }
+
+.ailock-tab:focus {
+	box-shadow: none;
+	outline: 0;
+}
+
+.ailock-tab:focus-visible {
+	outline: 2px solid var(--ailock-accent);
+	outline-offset: -2px;
+}
+
+.ailock-tab.is-active {
+	border-bottom-color: var(--ailock-accent);
+	color: #1d2327;
+	font-weight: 600;
+}
+
+.ailock-tab.is-active svg { color: var(--ailock-accent); }
+
+@media (max-width: 782px) {
+	.ailock-header { padding: 12px 12px 0; }
+	.ailock-tabs { flex-wrap: nowrap; width: 100%; overflow-x: auto; }
+	.ailock-tab { padding: 10px 8px 11px; white-space: nowrap; }
+}
+
+/* Layout ------------------------------------------------------------------- */
+
+.ailock-settings-page .ailock-wrap { margin: 20px 20px 0; }
+
+@media (max-width: 782px) {
+	.ailock-settings-page .ailock-wrap { margin: 12px 12px 0; }
+}
+
+.ailock-wrap #poststuff { padding-top: 0; }
+
+.ailock-wrap .notice { margin: 0 0 16px; }
+
+.ailock-wrap [hidden] { display: none !important; }
+
+.ailock-wrap .postbox { border-color: var(--ailock-border); border-radius: 6px; }
+
+.ailock-wrap .postbox-header {
+	border-bottom-color: var(--ailock-line);
+	border-radius: 6px 6px 0 0;
+}
+
+.ailock-wrap .postbox .hndle {
+	justify-content: flex-start;
+	gap: 8px;
+	padding: 12px 16px;
+	color: #1d2327;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: default;
+}
+
+.ailock-wrap .postbox .hndle svg {
+	flex: none;
+	color: var(--ailock-accent);
+}
+
+.ailock-wrap .postbox .inside {
+	margin: 0;
+	padding: 4px 16px 16px;
+	color: #1d2327;
+	font-size: 13px;
+}
+
+.ailock-intro {
+	margin: 12px 0 16px;
+	color: #50575e;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.ailock-wrap .description { color: var(--ailock-muted); }
+
+.ailock-muted { color: var(--ailock-muted); }
+
+.ailock-field-label {
+	margin: 18px 0 8px;
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.ailock-settings-list { margin-top: 12px; }
+
+.ailock-setting + .ailock-setting { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ailock-line); }
+.ailock-setting .description { margin: 4px 0 0 24px; line-height: 1.55; }
+
+.ailock-check { display: inline-flex; align-items: flex-start; gap: 6px; font-weight: 500; }
+.ailock-check input { margin-top: 1px !important; }
+
+.ailock-inline-field {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	font-weight: 500;
+}
+
+.ailock-inline-field svg { color: var(--ailock-accent); }
+
+.ailock-setting .ailock-inline-field + .description { margin-left: 0; }
+
+.ailock-wrap .button svg {
+	vertical-align: -3px;
+	margin-right: 5px;
+}
+
+.ailock-wrap .button-small svg { vertical-align: -2px; }
+
+.ailock-wrap .button.ailock-danger { border-color: var(--ailock-bad); color: var(--ailock-bad); }
+.ailock-wrap .button.ailock-danger:hover { background: var(--ailock-bad-bg); }
+
+.ailock-wrap code { border-radius: 4px; font-size: 12px; }
+
+/* Lockdown switch and "you" card ------------------------------------------------ */
+
+.ailock-master {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 12px 0 0;
+	padding: 14px 14px 14px 12px;
+	border: 1px solid var(--ailock-border);
+	border-radius: 6px;
+	cursor: pointer;
+	transition: border-color .15s, background .15s;
+}
+
+.ailock-master:has(input:checked) {
+	border-color: var(--ailock-ok);
+	background: var(--ailock-ok-bg);
+}
+
+.ailock-master input { margin: 2px 0 0 !important; }
+
+.ailock-master-text { display: grid; gap: 3px; line-height: 1.5; }
+.ailock-master-text strong { font-size: 14px; }
+.ailock-master-text span { color: #50575e; }
+
+.ailock-inline-warning {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 10px 0 0;
+	padding: 10px 12px;
+	border-left: 4px solid var(--ailock-warn);
+	border-radius: 0 4px 4px 0;
+	background: var(--ailock-warn-bg);
+	line-height: 1.5;
+}
+
+.ailock-inline-warning svg { flex: none; margin-top: 1px; color: #996800; }
+
+.ailock-you {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 14px;
+	margin: 14px 0 4px;
+	padding: 14px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 6px;
+	background: #f6f7f7;
+}
+
+.ailock-you.is-allowed { border-style: solid; border-color: var(--ailock-border); background: #fff; }
+
+.ailock-you-icon {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	background: var(--ailock-bad-bg);
+	color: var(--ailock-bad);
+}
+
+.ailock-you.is-allowed .ailock-you-icon { background: var(--ailock-ok-bg); color: var(--ailock-ok); }
+
+.ailock-you-text {
+	flex: 1 1 260px;
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+}
+
+.ailock-you-label { color: var(--ailock-muted); font-size: 12px; }
+
+.ailock-via {
+	margin-left: 4px;
+	padding: 1px 7px;
+	border-radius: 999px;
+	background: var(--ailock-tint);
+	color: var(--ailock-accent);
+	font-weight: 600;
+}
+
+.ailock-wrap code.ailock-you-ip {
+	justify-self: start;
+	padding: 0;
+	background: none;
+	color: #1d2327;
+	font-size: 18px;
+	font-weight: 600;
+	word-break: break-all;
+}
+
+.ailock-you-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--ailock-bad);
+	font-weight: 500;
+}
+
+.ailock-you.is-allowed .ailock-you-status { color: var(--ailock-ok-text); }
+
+.ailock-hint {
+	display: flex;
+	align-items: flex-start;
+	gap: 7px;
+	margin: 10px 0 0;
+	color: var(--ailock-muted);
+	line-height: 1.5;
+}
+
+.ailock-hint svg { flex: none; margin-top: 2px; }
+
+/* Allowed list ---------------------------------------------------------------- */
+
+.ailock-entries {
+	margin: 4px 0 0;
+	border: 1px solid var(--ailock-border);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.ailock-entries-head,
+.ailock-entry {
+	display: grid;
+	grid-template-columns: 34px minmax(170px, 1.25fr) minmax(130px, 1fr) minmax(150px, 1.1fr) 34px;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+}
+
+.ailock-entries-head {
+	padding-top: 9px;
+	padding-bottom: 9px;
+	border-bottom: 1px solid var(--ailock-border);
+	background: #f6f7f7;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.ailock-entry + .ailock-entry { border-top: 1px solid var(--ailock-line); }
+
+.ailock-entry.is-new { background: var(--ailock-tint); }
+
+.ailock-entry input[type="text"] { width: 100%; min-width: 0; margin: 0; }
+
+.ailock-entry-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 7px;
+	background: var(--ailock-tint);
+	color: var(--ailock-accent);
+}
+
+.ailock-entry-status {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 3px 6px;
+	min-width: 0;
+	line-height: 1.4;
+}
+
+.ailock-resolved {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px;
+	min-width: 0;
+	color: var(--ailock-muted);
+}
+
+.ailock-resolved code { padding: 1px 5px; white-space: nowrap; }
+
+.ailock-more { font-size: 12px; cursor: help; }
+
+.ailock-sub { display: block; flex-basis: 100%; color: var(--ailock-muted); font-size: 12px; }
+.ailock-sub.is-error { color: var(--ailock-bad); }
+
+.ailock-remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	color: var(--ailock-muted) !important;
+	text-decoration: none;
+}
+
+.ailock-remove:hover,
+.ailock-remove:focus { background: var(--ailock-bad-bg); color: var(--ailock-bad) !important; }
+
+.ailock-entries .ailock-empty { margin: 0; padding: 14px; }
+
+@media (max-width: 960px) {
+	.ailock-entries-head { display: none; }
+
+	.ailock-entry {
+		grid-template-columns: 34px minmax(0, 1fr) 34px;
+		grid-template-areas: "icon value remove" "icon label remove" "icon status remove";
+		align-items: start;
+	}
+
+	.ailock-entry-icon { grid-area: icon; }
+	.ailock-entry [data-ailock-value] { grid-area: value; }
+	.ailock-entry [data-ailock-label] { grid-area: label; }
+	.ailock-entry-status { grid-area: status; }
+	.ailock-remove { grid-area: remove; }
+}
+
+.ailock-list-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin: 14px 0 0;
+}
+
+/* Shared pieces ------------------------------------------------------------------ */
+
+.ailock-callout {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 16px 0 0;
+	padding: 10px 12px;
+	border-left: 4px solid var(--ailock-accent);
+	border-radius: 0 4px 4px 0;
+	background: var(--ailock-tint);
+	line-height: 1.55;
+}
+
+.ailock-callout svg {
+	flex: none;
+	margin-top: 2px;
+	color: var(--ailock-accent);
+}
+
+.ailock-callout.is-warn { border-left-color: var(--ailock-warn); background: var(--ailock-warn-bg); }
+.ailock-callout.is-warn svg { color: #996800; }
+.ailock-callout.is-ok { border-left-color: var(--ailock-ok); background: var(--ailock-ok-bg); }
+.ailock-callout.is-ok svg { color: var(--ailock-ok); }
+
+.ailock-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin: 1px 4px 1px 0;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.ailock-pill.is-you { background: var(--ailock-ok-bg); color: var(--ailock-ok-text); }
+.ailock-pill.is-login,
+.ailock-pill.is-admin { background: var(--ailock-tint); color: var(--ailock-accent); }
+.ailock-pill.is-signin,
+.ailock-pill.is-session { background: var(--ailock-bad-bg); color: #a12a2b; }
+.ailock-pill.is-xmlrpc { background: var(--ailock-warn-bg); color: #8a6d00; }
+
+.ailock-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 8px 0;
+}
+
+.ailock-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 4px 10px;
+	border: 1px solid var(--ailock-border);
+	border-radius: 999px;
+	background: #fff;
+	font-weight: 500;
+}
+
+.ailock-chip svg { color: var(--ailock-accent); }
+.ailock-chip code { padding: 0; background: none; }
+.ailock-chip.is-bad { border-color: var(--ailock-bad); }
+.ailock-chip.is-bad svg,
+.ailock-chip.is-bad span { color: var(--ailock-bad); }
+
+.ailock-empty {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 12px 0 4px;
+	color: var(--ailock-muted);
+}
+
+.ailock-empty svg { color: var(--ailock-accent); }
+
+.ailock-table { border-color: var(--ailock-border); }
+.ailock-table th { font-weight: 600; }
+.ailock-table td { vertical-align: middle; }
+.ailock-table .num { text-align: right; }
+.ailock-table .ailock-actions-col { width: 1%; white-space: nowrap; text-align: right; }
+.ailock-table .ailock-actions-col .button + .button { margin-left: 4px; }
+.ailock-table .ailock-sub { margin-top: 3px; font-family: Menlo, Consolas, monospace; font-size: 11px; }
+
+.ailock-event { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+.ailock-event svg { color: var(--ailock-accent); }
+
+@media (max-width: 782px) {
+	.ailock-table thead { display: none; }
+	.ailock-table tr { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 10px; }
+	.ailock-table td { display: block; padding: 0; }
+	.ailock-table .num { text-align: left; }
+}
+
+/* Option cards ------------------------------------------------------------------- */
+
+.ailock-options {
+	display: grid;
+	gap: 8px;
+}
+
+.ailock-option {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px;
+	border: 1px solid var(--ailock-border);
+	border-radius: 6px;
+	cursor: pointer;
+	transition: border-color .15s, box-shadow .15s;
+}
+
+.ailock-option:hover { border-color: #a7aaad; }
+
+.ailock-option:has(input:checked) {
+	border-color: var(--ailock-accent);
+	box-shadow: 0 0 0 1px var(--ailock-accent);
+}
+
+.ailock-option input { margin: 2px 0 0 !important; }
+
+.ailock-option-icon {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	background: var(--ailock-tint);
+	color: var(--ailock-accent);
+}
+
+.ailock-option-text {
+	display: grid;
+	gap: 3px;
+	line-height: 1.45;
+}
+
+.ailock-option-text span { color: #50575e; }
+
+/* Recovery ---------------------------------------------------------------------- */
+
+.ailock-ways {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+}
+
+@media (max-width: 1100px) {
+	.ailock-ways { grid-template-columns: 1fr; }
+}
+
+.ailock-way {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px;
+	border: 1px solid var(--ailock-border);
+	border-radius: 6px;
+	line-height: 1.5;
+}
+
+.ailock-way > div { flex: 1; display: grid; gap: 6px; min-width: 0; }
+
+.ailock-way pre {
+	margin: 0;
+	padding: 8px 10px;
+	overflow-x: auto;
+	border-radius: 5px;
+	background: #1d2327;
+	color: #f0f0f1;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.ailock-way pre code {
+	padding: 0;
+	background: none;
+	color: inherit;
+	font-size: 12px;
+}
+
+/* IP detection --------------------------------------------------------------------- */
+
+.ailock-facts { margin: 12px 0 0; }
+
+.ailock-facts > div {
+	display: grid;
+	grid-template-columns: 160px minmax(0, 1fr);
+	gap: 12px;
+	padding: 9px 0;
+	border-top: 1px solid var(--ailock-line);
+}
+
+.ailock-facts > div:first-child { border-top: 0; }
+
+.ailock-facts dt { color: var(--ailock-muted); font-weight: 500; }
+.ailock-facts dd { margin: 0; min-width: 0; word-break: break-word; }
+
+.ailock-wrap code.ailock-strong-code { font-size: 15px; font-weight: 600; }
+
+.ailock-header-line { display: block; margin: 0 0 3px; }
+
+@media (max-width: 600px) {
+	.ailock-facts > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Activity ------------------------------------------------------------------- */
+
+.ailock-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 12px;
+	margin: 12px 0 4px;
+}
+
+.ailock-stat {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 2px 10px;
+	padding: 14px;
+	border: 1px solid var(--ailock-border);
+	border-radius: 6px;
+	background: #fff;
+}
+
+.ailock-stat-icon {
+	grid-row: span 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	background: var(--ailock-tint);
+	color: var(--ailock-accent);
+}
+
+.ailock-stat-num {
+	color: #1d2327;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.1;
+}
+
+.ailock-stat-label {
+	color: var(--ailock-muted);
+	font-size: 12px;
+	line-height: 1.3;
+}
+
+/* Sidebar -------------------------------------------------------------------- */
+
+.ailock-sidebar {
+	position: sticky;
+	top: 52px;
+}
+
+@media (max-width: 850px) {
+	.ailock-sidebar { position: static; }
+}
+
+.ailock-save-box .inside p { color: #50575e; }
+
+.ailock-save-box .button-primary {
+	width: 100%;
+	text-align: center;
+}
+
+.ailock-checklist { margin: 12px 0 4px; }
+
+.ailock-checklist li {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 0 0 8px;
+	line-height: 1.45;
+}
+
+.ailock-checklist svg {
+	flex: none;
+	margin-top: 1px;
+}
+
+.ailock-checklist .is-ok svg { color: var(--ailock-ok); }
+.ailock-checklist .is-off { color: var(--ailock-muted); }
+.ailock-checklist .is-off svg { color: #a7aaad; }
+
+.ailock-steps {
+	margin: 12px 0 10px;
+	list-style: none;
+}
+
+.ailock-steps li {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 0 0 10px;
+	line-height: 1.5;
+}
+
+.ailock-step-icon {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 7px;
+	background: var(--ailock-tint);
+	color: var(--ailock-accent);
+}
+
+.ailock-updates-box p { line-height: 1.55; }
